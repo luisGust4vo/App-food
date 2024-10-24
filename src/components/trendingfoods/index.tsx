@@ -1,6 +1,7 @@
 import { FlatList } from "react-native";
 import { useState, useEffect } from "react";
 import { CardHorizontalFood } from "../food/index";
+import { ip } from "../../config";
 
 export interface FoodProps {
   id: string;
@@ -17,7 +18,7 @@ export function Trendingfoods() {
   const [foods, setfoods] = useState<FoodProps[]>([]);
   useEffect(() => {
     async function getFood() {
-      const response = await fetch("http://localhost:3000/foods"); //Se for rodar em sua maquina local substituir o localhost pelo seu ip
+      const response = await fetch(`http://${ip}:3000/foods`); //Se for rodar em sua maquina local substituir o localhost pelo seu ip
       const data = await response.json();
       setfoods(data);
     }

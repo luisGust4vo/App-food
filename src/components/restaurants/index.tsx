@@ -1,6 +1,7 @@
 import { View, Text, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { RestaurantsItem } from "../food/horizontal/index";
+import { ip } from "../../config";
 
 export interface RestaurantsProps {
   id: string;
@@ -12,7 +13,7 @@ export function Restaurants() {
   const [restaurants, setRestaurants] = useState<RestaurantsProps[]>([]);
   useEffect(() => {
     async function getFood() {
-      const response = await fetch("http://localhost:3000/restaurants"); //Se for rodar em sua maquina local substituir o localhost pelo seu ip
+      const response = await fetch(`http://${ip}:3000/restaurants`); //Se for rodar em sua maquina local substituir o localhost pelo seu ip
       const data = await response.json();
       setRestaurants(data);
     }
